@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 export class ChatContent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     createMarkup(markupString) {
         return {
             _html: markupString,
