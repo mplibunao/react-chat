@@ -54,6 +54,28 @@ export default class App extends Component {
     }
   }
 
+  join() {
+    const { email, username } = this.state;
+
+    if (!email) {
+      Materialize.toast('You must enter an email', 2000);
+      return;
+    }
+
+    if (!user) {
+      Materialize.toast('You must choose a username', 2000);
+      return;
+    }
+
+    this.setState(prevState => {
+      return {
+        email: $('<p>').html(prevState.email).text(),
+        username: $('<p>').html(prevState.username).text(),
+        joined: true
+      }
+    });
+  }
+
   gravatarURL(email) {
     const hash = md5(email).toString();
     return `http://www.gravatar.com/avatar/${hash}`;
