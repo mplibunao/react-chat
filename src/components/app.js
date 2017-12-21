@@ -5,8 +5,13 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
+    this.ws = null;
     this.state = {
-      message: ""
+      newMsg: '', // contains new message to be sent to server
+      chatContent: '', // A running list of chat messages displayed on screen
+      email: '', // Email address used for grabbing avatar
+      username: '', // Our username
+      joined: false,
     };
   }
 
