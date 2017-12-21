@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import { Button } from "react-bootstrap";
 import emojione from "emojione";
-const md5 = require('md5');
 import Materialize from "materialize-css";
-import * as $ from 'jquery';
+import { connect } from "react-redux";
+// import * as $ from 'jquery';
+
+import * as Actions from "../actions";
+import ChatContent from './ChatContent';
+import Login from './Login';
+import ChatInput from './ChatInput';
+import './app.css';
+const md5 = require('md5');
 
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
     this.ws = null;
     this.state = {
       newMsg: '', // contains new message to be sent to server
-      chatContent: '', // A running list of chat messages displayed on screen
+      chatContent: [], // A running list of chat messages displayed on screen
       email: '', // Email address used for grabbing avatar
       username: '', // Our username
       joined: false,
@@ -25,6 +32,7 @@ export default class App extends Component {
     this.ws.onmessage = evt => {
       const msg = JSON.parse(evt.data);
       this.setState(prevState => {
+        const chatContent = prevState.chatContent.concat()
         const chatContent = prevState.chatContent + `<div><img src="${this.gravatarURL(msg.email)}">${msg.username} </div> ${emojione.toImage(msg.message)} <br/>`
         return {
           chatContent
@@ -62,7 +70,7 @@ export default class App extends Component {
       return;
     }
 
-    if (!user) {
+    if (!username) {
       Materialize.toast('You must choose a username', 2000);
       return;
     }
@@ -133,3 +141,9 @@ export default class App extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps, Actions)(App);
