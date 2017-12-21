@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Button } from "react-bootstrap";
 import emojione from "emojione";
 const md5 = require('md5');
+import Materialize from "materialize-css";
+import * as $ from 'jquery';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -33,6 +36,21 @@ export default class App extends Component {
     
     this.ws.onopen = evt => {
       console.log("open", evt);
+    }
+  }
+
+  send() {
+    if (this.state.newMsg !== '') {
+      this.ws.send(
+        JSON.stringify({
+          email: this.state.email,
+          username: this.state.username,
+          message: $('<p>').html(this.state.newMsg).text() // strip out html
+        })
+      );
+
+      // reset newMsg
+      this.setState({ newMsg: '' });
     }
   }
 
