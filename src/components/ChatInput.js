@@ -6,13 +6,15 @@ class ChatInput extends Component {
             this.props.sendMessage();
         }
     }
-    render() { 
+    render() {
         return (
             <div className="row">
                 <div className="input-field col s8">
-                    <input type="text"
+                    <input
+                        type="text"
                         onKeyPress={e => this._handleKeyPress(e)}
                         onChange={e => this.props.updateMsg(e)}
+                        value={this.props.value}
                     />
                 </div>
                 <div className="input-field col s4">
@@ -25,5 +27,5 @@ class ChatInput extends Component {
         );
     }
 }
- 
+
 export default ChatInput;

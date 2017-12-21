@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import emojione from "emojione";
+// import emojione from "emojione";
 import Materialize from "materialize-css";
 import { connect } from "react-redux";
 // import * as $ from 'jquery';
@@ -10,7 +10,6 @@ import ChatContent from "./ChatContent";
 import Login from "./Login";
 import ChatInput from "./ChatInput";
 import "./app.css";
-const md5 = require("md5");
 
 class App extends Component {
     constructor(props) {
@@ -28,11 +27,17 @@ class App extends Component {
 
     componentDidMount() {
         this.ws = new WebSocket("ws://localhost:8000/ws");
-        this.ws.onmessage = e => {
+        this.ws.addEventListener("message", e => {
             this.props.receiveMessage(e.data);
             const el = document.getElementById("chat-messages");
             el.scrollTop = el.scrollHeight; // auto-scroll to bottom
-        };
+        });
+        // this.ws.onmessage = e => {
+        //     console.log("e: ", e);
+        //     this.props.receiveMessage(e.data);
+        //     const el = document.getElementById("chat-messages");
+        //     el.scrollTop = el.scrollHeight; // auto-scroll to bottom
+        // };
 
         this.ws.onopen = evt => {
             console.log("open", evt);
@@ -40,10 +45,10 @@ class App extends Component {
     }
 
     componentWillReceiveProps(nextProps, _nextContext) {
-        const { newMsg, messages, email, username, joined } = nextProps;
+        const { new_message, messages, email, username, joined } = nextProps;
 
         this.setState({
-            newMsg,
+            newMsg: new_message,
             messages,
             email,
             username,
@@ -53,6 +58,9 @@ class App extends Component {
 
     send() {
         const { newMsg, email, username } = this.state;
+        console.log("username: ", username);
+        console.log("email: ", email);
+        console.log("newMsg: ", newMsg);
         if (newMsg !== "") {
             this.ws.send(
                 JSON.stringify({
@@ -81,11 +89,6 @@ class App extends Component {
         }
 
         this.props.handleJoin(true);
-    }
-
-    gravatarURL(email) {
-        const hash = md5(email).toString();
-        return `http://www.gravatar.com/avatar/${hash}`;
     }
 
     updateEmail(e) {
@@ -130,10 +133,10 @@ class App extends Component {
                         </a>
                     </nav>
                 </header>
-                {/* <main id="app">
-          <ChatContent html={this.state.chatContent} />
-          {userInput}
-        </main> */}
+                <main id="app">
+                    <ChatContent messages={this.state.messages} />
+                    {userInput}
+                </main>
                 <footer className="page-footer" />
             </div>
         );
