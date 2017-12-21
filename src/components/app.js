@@ -39,7 +39,7 @@ class App extends Component {
         };
     }
 
-    componentWillRecieveProps(nextProps, _nextContext) {
+    componentWillReceiveProps(nextProps, _nextContext) {
         const { newMsg, messages, email, username, joined } = nextProps;
 
         this.setState({
@@ -51,42 +51,37 @@ class App extends Component {
         });
     }
 
-    // send() {
-    //   if (this.state.newMsg !== '') {
-    //     this.ws.send(
-    //       JSON.stringify({
-    //         email: this.state.email,
-    //         username: this.state.username,
-    //         message: $('<p>').html(this.state.newMsg).text() // strip out html
-    //       })
-    //     );
+    send() {
+        const { newMsg, email, username } = this.state;
+        if (newMsg !== "") {
+            this.ws.send(
+                JSON.stringify({
+                    email,
+                    username,
+                    message: newMsg
+                })
+            );
 
-    //     // reset newMsg
-    //     this.setState({ newMsg: '' });
-    //   }
-    // }
+            // reset newMsg
+            this.props.handleChangeNewMessage("");
+        }
+    }
 
-    // join() {
-    //   const { email, username } = this.state;
+    join() {
+        const { email, username } = this.state;
 
-    //   if (!email) {
-    //     Materialize.toast('You must enter an email', 2000);
-    //     return;
-    //   }
+        if (!email) {
+            Materialize.toast("You must enter an email", 2000);
+            return;
+        }
 
-    //   if (!username) {
-    //     Materialize.toast('You must choose a username', 2000);
-    //     return;
-    //   }
+        if (!username) {
+            Materialize.toast("You must choose a username", 2000);
+            return;
+        }
 
-    //   this.setState(prevState => {
-    //     return {
-    //       email: $('<p>').html(prevState.email).text(),
-    //       username: $('<p>').html(prevState.username).text(),
-    //       joined: true
-    //     }
-    //   });
-    // }
+        this.props.handleJoin(true);
+    }
 
     gravatarURL(email) {
         const hash = md5(email).toString();
