@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from "react-bootstrap";
+const md5 = require('md5');
 
 export default class App extends Component {
   constructor(props) {
@@ -16,15 +17,26 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    console.log(0);
     this.ws = new WebSocket("ws://localhost:8000/ws");
     this.ws.onmessage = evt => {
+      const msg = JSON.parse(evt.data);
+      this.setState(prevState => {
+        const chatContent = prevState.chatContent + `<div><img src="${this.gravatarURL(msg.email)}">${msg.username} </div>`
+        return {
+          chatContent:
+        }
+      });
       console.log('evt: ', evt);
     }
     
     this.ws.onopen = evt => {
       console.log("open", evt);
     }
+  }
+
+  gravatarURL(email) {
+    const hash = md5(email).toString();
+    return `http://www.gravatar.com/avatar/${hash}`;
   }
 
 
