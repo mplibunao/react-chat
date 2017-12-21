@@ -30,6 +30,9 @@ function joined(state = false, action) {
 
 function messages(state = [], action) {
   switch(action.type) {
+  case "ADD_MESSAGE":
+    console.log('[...state, action.msg]: ', [...state, action.msg]);
+    return [...state, action.msg];
   default:
     return state;
   }
