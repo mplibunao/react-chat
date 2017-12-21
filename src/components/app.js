@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from "react-bootstrap";
+import emojione from "emojione";
 const md5 = require('md5');
 
 export default class App extends Component {
@@ -21,12 +22,13 @@ export default class App extends Component {
     this.ws.onmessage = evt => {
       const msg = JSON.parse(evt.data);
       this.setState(prevState => {
-        const chatContent = prevState.chatContent + `<div><img src="${this.gravatarURL(msg.email)}">${msg.username} </div>`
+        const chatContent = prevState.chatContent + `<div><img src="${this.gravatarURL(msg.email)}">${msg.username} </div> ${emojione.toImage(msg.message)} <br/>`
         return {
-          chatContent:
-        }
+          chatContent
+        };
       });
-      console.log('evt: ', evt);
+      const el = document.getElementById('chat-messages');
+      el.scrollTop = el.scrollHeight; // auto-scroll to bottom
     }
     
     this.ws.onopen = evt => {
