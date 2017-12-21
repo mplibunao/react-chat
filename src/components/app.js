@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from "react-bootstrap";
 
 export default class App extends Component {
   constructor(props) {
@@ -12,23 +13,21 @@ export default class App extends Component {
   componentDidMount() {
     console.log(0);
     this.ws = new WebSocket("ws://localhost:8000/ws");
-    // this.ws = new WebSocket('ws://' + window.location.host + '/ws');
-    console.log(1);
-    this.ws.onmessage = (e) => {
-      console.log(2);
-      //e.data
-      console.log('e.data: ', e.data);
-      //this.setState({ message:  })
+    this.ws.onmessage = evt => {
+      console.log('evt: ', evt);
     }
-
-    this.ws.onOpen = (e) => {
-      console.log(3);
+    
+    this.ws.onopen = evt => {
+      console.log("open", evt);
     }
   }
 
+
   render() {
+    //this.ws
+    console.log('this.ws: ', this.ws);
     return (
-      <div>Hi</div>
+      <div>Hi <Button>Sup</Button> </div>
     );
   }
 }
