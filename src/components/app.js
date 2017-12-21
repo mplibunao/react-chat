@@ -81,12 +81,55 @@ export default class App extends Component {
     return `http://www.gravatar.com/avatar/${hash}`;
   }
 
+  updateEmail(e) {
+    this.setState({
+      email: e.target.value,
+    })
+  }
+
+  updateUsername(e) {
+    this.setState({ email: e.target.value });
+  }
+
+  updateMsg(e) {
+    this.setState({ newMsg: e.target.value });
+  }
 
   render() {
-    //this.ws
-    console.log('this.ws: ', this.ws);
+    let userInput;
+    if (this.state.joined) {
+      userInput = (
+        <ChatInput
+          value={this.state.newMsg}
+          sendMessage={() => this.send()}
+          updateMsg={e => this.updateMsg(e)}
+        />);
+    } else {
+      userInput = (
+        <Login
+          updateEmail={e => this.updateEmail(e)}
+          updateUsername={e => this.updateUsername(e)}
+          handleLogin={() => this.join()}
+          username={this.state.username}
+          email={this.state.email}
+        />);
+    }
     return (
-      <div>Hi <Button>Sup</Button> </div>
+      <div>
+        <header>
+          <nav className="nav-wrapper">
+            <a href="/" className="brand-logo right">
+              Shore Chat App
+            </a>
+          </nav>
+        </header>
+        <main id="app">
+          <ChatContent html={this.state.chatContent} />
+          {userInput}
+        </main>
+        <footer className="page-footer">
+        </footer>
+      </div>
     );
   }
 }
