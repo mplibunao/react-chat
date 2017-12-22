@@ -12,7 +12,7 @@ export class ChatContent extends Component {
         const messages = this.props.messages.map((message, i) => {
             return (
                 <div className="chip" key={i}>
-                    <img src={this.gravatarURL(message.email)} alt={}/>
+                    <img src={this.gravatarURL(message.email)} alt={i}/>
                     {message.username}
                     <span>{message.message}</span>
                 </div>
