@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "emojione": "^3.1.2",
     "jquery": "^3.2.1",
     "materialize-css": "^0.100.2",
     "md5": "^2.2.1",

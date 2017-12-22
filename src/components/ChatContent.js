@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import emojione from "emojione";
 const md5 = require("md5");
 
 export class ChatContent extends Component {
@@ -11,21 +10,15 @@ export class ChatContent extends Component {
     render() {
         // emojione.toImage(message.message);
         const messages = this.props.messages.map((message, i) => {
-            console.log("message: ", message);
-            //emojione.toImage(message.message);
-            console.log(
-                "emojione.toImage(message.message): ",
-                emojione.toImage(message.message)
-            );
             return (
                 <div className="chip" key={i}>
-                    <img src={this.gravatarURL(message.email)} />
+                    <img src={this.gravatarURL(message.email)} alt={}/>
                     {message.username}
                     <span>{message.message}</span>
                 </div>
             );
         });
-        console.log("messages: ", messages);
+        
         return (
             <div className="row">
                 <div className="col s12">
