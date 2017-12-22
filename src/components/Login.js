@@ -22,7 +22,7 @@ function Login({ updateEmail, email, updateUsername, username, handleLogin }) {
             <div className="input-field col s4">
                 <button
                     className="waves-effect waves-light btn"
-                    onClick={this.props.handleLogin}
+                    onClick={() => handleLogin()}
                 >
                     <i className="material-icons right">done</i>
                     Join
