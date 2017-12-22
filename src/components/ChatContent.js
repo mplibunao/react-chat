@@ -10,12 +10,18 @@ export class ChatContent extends Component {
 
     render() {
         // emojione.toImage(message.message);
-        const messages = this.props.messages.map(message => {
+        const messages = this.props.messages.map((message, i) => {
             console.log("message: ", message);
+            //emojione.toImage(message.message);
+            console.log(
+                "emojione.toImage(message.message): ",
+                emojione.toImage(message.message)
+            );
             return (
-                <div className="chip">
+                <div className="chip" key={i}>
                     <img src={this.gravatarURL(message.email)} />
                     {message.username}
+                    <span>{message.message}</span>
                 </div>
             );
         });
