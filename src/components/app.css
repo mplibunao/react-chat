@@ -1,13 +1,17 @@
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column; }
+@import url(~bootstrap/dist/css/bootstrap.min.css);
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+html, body {
+  background: linear-gradient(to right bottom, #01193e, #003b68, #0075ad, #179ccf);
+  font-family: 'Raleway';
+  height: 100%; }
 
-main {
-  flex: 1 0 auto; }
+nav {
+  padding-top: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3); }
 
-#chat-messages {
-  min-height: 10vh;
-  height: 60vh;
-  width: 100%;
-  overflow-y: scroll; }
+.navbar-brand, .navbar-brand:hover, .navbar-brand:focus {
+  font-weight: 900;
+  font-size: 28px;
+  color: #0c79c5;
+  text-transform: uppercase; }

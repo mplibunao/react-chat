@@ -4,11 +4,13 @@ import { Button } from "react-bootstrap";
 import Materialize from "materialize-css";
 import { connect } from "react-redux";
 // import * as $ from 'jquery';
+import { Navbar } from "react-bootstrap";
 
 import * as Actions from "../actions";
 import ChatContent from "./ChatContent";
 import Login from "./Login";
 import ChatInput from "./ChatInput";
+import ChatNav from "./ChatNav";
 import "./app.css";
 
 class App extends Component {
@@ -127,11 +129,7 @@ class App extends Component {
         return (
             <div>
                 <header>
-                    <nav className="nav-wrapper">
-                        <a href="/" className="brand-logo right">
-                            Shore Chat App
-                        </a>
-                    </nav>
+                    <ChatNav />
                 </header>
                 <main id="app">
                     <ChatContent messages={this.state.messages} />
