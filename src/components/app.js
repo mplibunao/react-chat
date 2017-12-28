@@ -101,28 +101,6 @@ class App extends Component {
     }
 
     render() {
-        let userInput;
-        let login;
-        if (this.state.joined) {
-            userInput = (
-                <ChatInput
-                    value={this.state.newMsg}
-                    sendMessage={() => this.send()}
-                    updateMsg={e => this.updateMsg(e)}
-                />
-            );
-        }
-        if (!this.state.joined) {
-            login = (
-                <Login
-                    updateEmail={e => this.updateEmail(e)}
-                    updateUsername={e => this.updateUsername(e)}
-                    handleLogin={() => this.join()}
-                    username={this.state.username}
-                    email={this.state.email}
-                />
-            );
-        }
         return (
             <div>
                 <ToastContainer
@@ -136,14 +114,28 @@ class App extends Component {
                                 Go Chat
                             </a>
                         </div>
-                        {login}
+                        {!this.state.joined && (
+                            <Login
+                                updateEmail={e => this.updateEmail(e)}
+                                updateUsername={e => this.updateUsername(e)}
+                                handleLogin={() => this.join()}
+                                username={this.state.username}
+                                email={this.state.email}
+                            />
+                        )}
                     </ChatNav>
                 </header>
                 <div className="container">
                     <div className="row">
                         <ChatContent messages={this.state.messages} />
                     </div>
-                    {userInput}
+                    {this.state.joined && (
+                        <ChatInput
+                            value={this.state.newMsg}
+                            sendMessage={() => this.send()}
+                            updateMsg={e => this.updateMsg(e)}
+                        />
+                    )}
                 </div>
                 <footer className="footer">Powered by Go</footer>
             </div>
