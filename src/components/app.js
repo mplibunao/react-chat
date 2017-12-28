@@ -5,6 +5,7 @@ import Materialize from "materialize-css";
 import { connect } from "react-redux";
 // import * as $ from 'jquery';
 import { Navbar } from "react-bootstrap";
+import { ToastContainer } from "react-toastr";
 
 import * as Actions from "../actions";
 import ChatContent from "./ChatContent";
@@ -34,12 +35,6 @@ class App extends Component {
             const el = document.getElementById("chat-messages");
             el.scrollTop = el.scrollHeight; // auto-scroll to bottom
         });
-        // this.ws.onmessage = e => {
-        //     console.log("e: ", e);
-        //     this.props.receiveMessage(e.data);
-        //     const el = document.getElementById("chat-messages");
-        //     el.scrollTop = el.scrollHeight; // auto-scroll to bottom
-        // };
 
         this.ws.onopen = evt => {
             console.log("open", evt);
@@ -107,6 +102,7 @@ class App extends Component {
 
     render() {
         let userInput;
+        let login;
         if (this.state.joined) {
             userInput = (
                 <ChatInput
@@ -115,8 +111,9 @@ class App extends Component {
                     updateMsg={e => this.updateMsg(e)}
                 />
             );
-        } else {
-            userInput = (
+        }
+        if (!this.state.joined) {
+            login = (
                 <Login
                     updateEmail={e => this.updateEmail(e)}
                     updateUsername={e => this.updateUsername(e)}
@@ -128,8 +125,19 @@ class App extends Component {
         }
         return (
             <div>
+                <ToastContainer
+                    ref={ref => (this.toastr = ref)}
+                    className="toast-top-right"
+                />
                 <header>
-                    <ChatNav />
+                    <ChatNav>
+                        <div className="navbar-header">
+                            <a href="#" className="navbar-brand">
+                                Go Chat
+                            </a>
+                        </div>
+                        {login}
+                    </ChatNav>
                 </header>
                 <div className="container">
                     <div className="row">

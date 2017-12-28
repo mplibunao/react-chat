@@ -1,14 +1,18 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
 
-const ChatNav = () => (
-    <nav className="navbar navbar-default">
-        <div className="container-fluid">
-            <div className="navbar-header">
-                <a href="#">Go Chat</a>
-            </div>
-        </div>
-    </nav>
-);
+const ChatNav = class extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <nav className="navbar navbar-default">
+                <div className="container-fluid">{this.props.children}</div>
+            </nav>
+        );
+    }
+};
 
 export default ChatNav;

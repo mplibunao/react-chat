@@ -2,29 +2,30 @@ import React from "react";
 
 function Login({ updateEmail, email, updateUsername, username, handleLogin }) {
     return (
-        <div>
-            <div className="a">
+        <div className="pull-right">
+            <div className="col-sm-5 form-group">
                 <input
                     type="email"
+                    className="form-control"
                     onChange={e => updateEmail(e)}
                     value={email}
                     placeholder="Email"
                 />
             </div>
-            <div className="b">
+            <div className="col-sm-5 form-group">
                 <input
                     type="text"
+                    className="form-control"
                     onChange={e => updateUsername(e)}
                     value={username}
                     placeholder="Username"
                 />
             </div>
-            <div className="c">
+            <div>
                 <button
-                    className="waves-effect waves-light btn"
+                    className="btn btn-primary"
                     onClick={() => handleLogin()}
                 >
-                    <i className="">done</i>
                     Join
                 </button>
             </div>
