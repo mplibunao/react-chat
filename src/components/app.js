@@ -137,7 +137,7 @@ class App extends Component {
                     </div>
                     {userInput}
                 </div>
-                <footer className="page-footer" />
+                <footer className="footer">Powered by Go</footer>
             </div>
         );
     }
