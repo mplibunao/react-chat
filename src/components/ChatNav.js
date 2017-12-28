@@ -8,7 +8,7 @@ const ChatNav = class extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-default">
+            <nav className="navbar">
                 <div className="container-fluid">{this.props.children}</div>
             </nav>
         );

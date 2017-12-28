@@ -2,8 +2,16 @@ import React from "react";
 
 function Login({ updateEmail, email, updateUsername, username, handleLogin }) {
     return (
-        <div className="pull-right">
-            <div className="col-sm-5 form-group">
+        <div className="pull-right col-sm-7">
+            <div className="pull-right login">
+                <button
+                    className="btn btn-default"
+                    onClick={() => handleLogin()}
+                >
+                    Join
+                </button>
+            </div>
+            <div className="form-group pull-right login">
                 <input
                     type="email"
                     className="form-control"
@@ -12,7 +20,7 @@ function Login({ updateEmail, email, updateUsername, username, handleLogin }) {
                     placeholder="Email"
                 />
             </div>
-            <div className="col-sm-5 form-group">
+            <div className="form-group pull-right login">
                 <input
                     type="text"
                     className="form-control"
@@ -20,14 +28,6 @@ function Login({ updateEmail, email, updateUsername, username, handleLogin }) {
                     value={username}
                     placeholder="Username"
                 />
-            </div>
-            <div>
-                <button
-                    className="btn btn-primary"
-                    onClick={() => handleLogin()}
-                >
-                    Join
-                </button>
             </div>
         </div>
     );

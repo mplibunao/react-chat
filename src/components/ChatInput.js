@@ -18,10 +18,7 @@ function ChatInput({ sendMessage, updateMsg, value }) {
                 />
             </div>
             <div className="">
-                <button className="">
-                    <i className="">chat</i>
-                    Send
-                </button>
+                <button className="btn btn-default">Send</button>
             </div>
         </div>
     );
