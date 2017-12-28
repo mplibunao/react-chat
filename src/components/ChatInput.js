@@ -8,8 +8,8 @@ function ChatInput({ sendMessage, updateMsg, value }) {
     };
 
     return (
-        <div className="row">
-            <div className="input-field col s8">
+        <div className="">
+            <div className="">
                 <input
                     type="text"
                     onKeyPress={e => _handleKeyPress(e)}
@@ -17,9 +17,9 @@ function ChatInput({ sendMessage, updateMsg, value }) {
                     value={value}
                 />
             </div>
-            <div className="input-field col s4">
-                <button className="waves-effect waves-light btn">
-                    <i className="material-icons right">chat</i>
+            <div className="">
+                <button className="">
+                    <i className="">chat</i>
                     Send
                 </button>
             </div>

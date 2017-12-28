@@ -131,10 +131,12 @@ class App extends Component {
                 <header>
                     <ChatNav />
                 </header>
-                <main id="app">
-                    <ChatContent messages={this.state.messages} />
+                <div className="container">
+                    <div className="row">
+                        <ChatContent messages={this.state.messages} />
+                    </div>
                     {userInput}
-                </main>
+                </div>
                 <footer className="page-footer" />
             </div>
         );

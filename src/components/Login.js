@@ -2,8 +2,8 @@ import React from "react";
 
 function Login({ updateEmail, email, updateUsername, username, handleLogin }) {
     return (
-        <div className="row">
-            <div className="input-field col s8">
+        <div>
+            <div className="a">
                 <input
                     type="email"
                     onChange={e => updateEmail(e)}
@@ -11,7 +11,7 @@ function Login({ updateEmail, email, updateUsername, username, handleLogin }) {
                     placeholder="Email"
                 />
             </div>
-            <div className="input-field col s8">
+            <div className="b">
                 <input
                     type="text"
                     onChange={e => updateUsername(e)}
@@ -19,12 +19,12 @@ function Login({ updateEmail, email, updateUsername, username, handleLogin }) {
                     placeholder="Username"
                 />
             </div>
-            <div className="input-field col s4">
+            <div className="c">
                 <button
                     className="waves-effect waves-light btn"
                     onClick={() => handleLogin()}
                 >
-                    <i className="material-icons right">done</i>
+                    <i className="">done</i>
                     Join
                 </button>
             </div>

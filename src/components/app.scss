@@ -20,6 +20,18 @@ nav {
     text-transform: uppercase;
 }
 
+.input-container{
+    box-sizing: border-box;
+    height: 70vh;
+    resize: none;
+    width: 100%;
+    border-color: #002240;
+    background-color: #002240;
+    color: #FFF;
+    padding:10px;
+    font-family: monospace;
+}
+
 // body {
 //     display: flex;
 //     min-height: 100vh;

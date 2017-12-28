@@ -19,13 +19,9 @@ const ChatContent = ({ messages }) => {
     });
 
     return (
-        <div className="row">
-            <div className="col s12">
-                <div className="card horizontal">
-                    <div id="chat-messages" className="card-content">
-                        {allMessages}
-                    </div>
-                </div>
+        <div className="col-sm-5">
+            <div id="chat-messages" className="input-container">
+                {allMessages}
             </div>
         </div>
     );
