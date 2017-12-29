@@ -30,10 +30,15 @@ class App extends Component {
     componentDidMount() {
         this.getLocalStorageData();
         this.ws = new WebSocket("ws://localhost:8000/ws");
-        this.ws.addEventListener("message", e => {
-            console.log("e: ", e.data);
 
-            this.props.receiveMessage(JSON.parse(e.data));
+        this.ws.addEventListener("message", e => {
+            const payload = JSON.parse(e.data);
+            if (payload.type === "ADD_MESSAGE") {
+                this.props.receiveMessage(payload);
+            } else if (payload.type === "ADD_USER") {
+                console.log("payload: ", payload);
+            }
+
             const el = document.getElementById("chat-messages");
             el.scrollTop = el.scrollHeight; // auto-scroll to bottom
         });
@@ -41,8 +46,7 @@ class App extends Component {
         this.ws.onopen = evt => {
             const { email, username } = this.state;
             if (email && username) {
-                const type = "user";
-
+                const type = "ADD_USER";
                 const payload = JSON.stringify({
                     type,
                     email,
@@ -77,9 +81,6 @@ class App extends Component {
 
     send() {
         const { newMsg, email, username } = this.state;
-        console.log("username: ", username);
-        console.log("email: ", email);
-        console.log("newMsg: ", newMsg);
         if (newMsg !== "") {
             this.ws.send(
                 JSON.stringify({

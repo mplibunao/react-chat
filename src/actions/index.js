@@ -33,6 +33,15 @@ function receive_joined(joined) {
     };
 }
 
+function change_user_list(payload) {
+    const { id, email, username } = payload;
+    return {
+        id,
+        email,
+        username
+    };
+}
+
 function saveCredentials() {
     return (dispatch, getState) => {
         localStorage.setItem("email", getState().email);
@@ -47,7 +56,6 @@ export function receiveMessage(msg) {
 }
 
 export function handleChangeNewMessage(new_message) {
-    console.log(0);
     return dispatch => {
         dispatch(receive_newMessage(new_message));
     };
@@ -69,5 +77,11 @@ export function handleJoin(status) {
     return dispatch => {
         dispatch(receive_joined(status));
         dispatch(saveCredentials());
+    };
+}
+
+export function addUser(payload) {
+    return dispatch => {
+        dispatch(change_user_list(payload));
     };
 }
