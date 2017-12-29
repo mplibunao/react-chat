@@ -45,6 +45,17 @@ function messages(state = [], action) {
     }
 }
 
+function users(state = [], action) {
+    switch (action.type) {
+        case "ADD_USER": {
+            const { id, username, email };
+            return [...state, { id, username, email }];
+        }
+        default:
+            return action;
+    }
+}
+
 const rootReducer = combineReducers({
     email,
     joined,

@@ -33,9 +33,10 @@ function receive_joined(joined) {
     };
 }
 
-function change_user_list(payload) {
+function receive_user(payload) {
     const { id, email, username } = payload;
     return {
+        type: "ADD_USER",
         id,
         email,
         username
@@ -82,6 +83,6 @@ export function handleJoin(status) {
 
 export function addUser(payload) {
     return dispatch => {
-        dispatch(change_user_list(payload));
+        dispatch(receive_user(payload));
     };
 }
