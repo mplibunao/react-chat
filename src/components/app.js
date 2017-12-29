@@ -28,6 +28,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.getLocalStorageData();
         this.ws = new WebSocket("ws://localhost:8000/ws");
         this.ws.addEventListener("message", e => {
             this.props.receiveMessage(e.data);
@@ -36,10 +37,18 @@ class App extends Component {
         });
 
         this.ws.onopen = evt => {
-            console.log("open", evt);
-        };
+            const { email, username } = this.state;
+            if (email && username) {
+                const type = "user";
 
-        this.getLocalStorageData();
+                const payload = JSON.stringify({
+                    type,
+                    email,
+                    username
+                });
+                this.ws.send(payload);
+            }
+        };
     }
 
     componentWillReceiveProps(nextProps, _nextContext) {
@@ -122,6 +131,7 @@ class App extends Component {
         }
 
         this.props.handleJoin(true);
+        this.ws.send();
     }
 
     updateEmail(e) {
