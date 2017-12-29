@@ -8,18 +8,13 @@ function ChatInput({ sendMessage, updateMsg, value }) {
     };
 
     return (
-        <div className="">
-            <div className="">
-                <input
-                    type="text"
-                    onKeyPress={e => _handleKeyPress(e)}
-                    onChange={e => updateMsg(e)}
-                    value={value}
-                />
-            </div>
-            <div className="">
-                <button className="btn btn-default">Send</button>
-            </div>
+        <div className="col-sm-12">
+            <input
+                type="text form-control"
+                onKeyPress={e => _handleKeyPress(e)}
+                onChange={e => updateMsg(e)}
+                value={value}
+            />
         </div>
     );
 }

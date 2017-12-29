@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 // import emojione from "emojione";
 import Materialize from "materialize-css";
 import { connect } from "react-redux";
-// import * as $ from 'jquery';
 import { Navbar } from "react-bootstrap";
 import { ToastContainer } from "react-toastr";
 
