@@ -19,7 +19,7 @@ const ChatContent = ({ messages }) => {
     });
 
     return (
-        <div className="col-sm-9">
+        <div className="col-sm-10">
             <div id="chat-messages" className="input-container">
                 {allMessages}
             </div>

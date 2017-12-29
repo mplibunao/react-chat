@@ -8,9 +8,10 @@ function ChatInput({ sendMessage, updateMsg, value }) {
     };
 
     return (
-        <div className="col-sm-12">
+        <div>
             <input
-                type="text form-control"
+                type="text"
+                className="form-control col-sm-12"
                 onKeyPress={e => _handleKeyPress(e)}
                 onChange={e => updateMsg(e)}
                 value={value}

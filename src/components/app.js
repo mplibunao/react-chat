@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, CloseButton } from "react-bootstrap";
 // import emojione from "emojione";
 import Materialize from "materialize-css";
 import { connect } from "react-redux";
@@ -74,13 +74,38 @@ class App extends Component {
     join() {
         const { email, username } = this.state;
 
-        if (!email) {
-            Materialize.toast("You must enter an email", 2000);
+        if (!email && username) {
+            this.toastr.error(
+                "You must enter an email address",
+                "Login Failed",
+                {
+                    closeButton: true,
+                    timeout: 30000,
+                    extendedTimeOut: 10000
+                }
+            );
             return;
         }
 
-        if (!username) {
-            Materialize.toast("You must choose a username", 2000);
+        if (!username && email) {
+            this.toastr.error("You must enter a username", "Login Failed", {
+                closeButton: true,
+                timeout: 30000,
+                extendedTimeOut: 10000
+            });
+            return;
+        }
+
+        if (!username && !email) {
+            this.toastr.error(
+                "You must enter a username and email address",
+                "Login Failed",
+                {
+                    closeButton: true,
+                    timeout: 30000,
+                    extendedTimeOut: 10000
+                }
+            );
             return;
         }
 
@@ -102,10 +127,6 @@ class App extends Component {
     render() {
         return (
             <div>
-                <ToastContainer
-                    ref={ref => (this.toastr = ref)}
-                    className="toast-top-right"
-                />
                 <header>
                     <ChatNav>
                         <div className="navbar-header">
@@ -125,6 +146,10 @@ class App extends Component {
                     </ChatNav>
                 </header>
                 <div className="container">
+                    <ToastContainer
+                        ref={ref => (this.toastr = ref)}
+                        className="toast-top-right"
+                    />
                     <div className="row">
                         <ChatContent messages={this.state.messages} />
                     </div>
