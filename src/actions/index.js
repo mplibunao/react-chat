@@ -42,7 +42,7 @@ function saveCredentials() {
 
 export function receiveMessage(msg) {
     return (dispatch, getState) => {
-        dispatch(addMessage(JSON.parse(msg)));
+        dispatch(addMessage(msg));
     };
 }
 

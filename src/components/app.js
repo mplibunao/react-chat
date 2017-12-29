@@ -31,7 +31,9 @@ class App extends Component {
         this.getLocalStorageData();
         this.ws = new WebSocket("ws://localhost:8000/ws");
         this.ws.addEventListener("message", e => {
-            this.props.receiveMessage(e.data);
+            console.log("e: ", e.data);
+
+            this.props.receiveMessage(JSON.parse(e.data));
             const el = document.getElementById("chat-messages");
             el.scrollTop = el.scrollHeight; // auto-scroll to bottom
         });
