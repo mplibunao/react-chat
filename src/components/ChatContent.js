@@ -10,9 +10,13 @@ const ChatContent = ({ messages }) => {
     // emojione.toImage(message.message);
     const allMessages = messages.map((message, i) => {
         return (
-            <div className="chip" key={i}>
-                <img src={gravatarURL(message.email)} alt={i} />
-                {message.username}
+            <div className="message" key={i}>
+                <img
+                    className="avatar"
+                    src={gravatarURL(message.email)}
+                    alt={i}
+                />
+                <span> {message.username}: </span>
                 <span>{message.message}</span>
             </div>
         );

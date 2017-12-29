@@ -25,7 +25,8 @@ nav {
   background-color: #002240;
   color: #FFF;
   padding: 10px;
-  font-family: monospace; }
+  font-family: monospace;
+  overflow-y: scroll; }
 
 .footer {
   background: rgba(0, 0, 0, 0.3);
@@ -44,3 +45,9 @@ nav {
 .login {
   display: inline-block;
   margin-right: 5px; }
+
+.message {
+  margin-bottom: 3px; }
+  .message .avatar {
+    height: 50px;
+    width: 50px; }
