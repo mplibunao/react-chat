@@ -57,9 +57,10 @@ class App extends Component {
     getLocalStorageData() {
         const email = localStorage.getItem("email");
         const username = localStorage.getItem("username");
-        if (email & username) {
+        if (localStorage.getItem("email") && localStorage.getItem("username")) {
             this.props.handleChangeEmail(email);
             this.props.handleChangeUsername(username);
+            this.props.handleJoin(true);
         }
     }
 
