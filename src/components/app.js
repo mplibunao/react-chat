@@ -38,6 +38,8 @@ class App extends Component {
         this.ws.onopen = evt => {
             console.log("open", evt);
         };
+
+        this.getLocalStorageData();
     }
 
     componentWillReceiveProps(nextProps, _nextContext) {
@@ -50,6 +52,15 @@ class App extends Component {
             username,
             joined
         });
+    }
+
+    getLocalStorageData() {
+        const email = localStorage.getItem("email");
+        const username = localStorage.getItem("username");
+        if (email & username) {
+            this.props.handleChangeEmail(email);
+            this.props.handleChangeUsername(username);
+        }
     }
 
     send() {
@@ -127,6 +138,10 @@ class App extends Component {
     render() {
         return (
             <div>
+                <ToastContainer
+                    ref={ref => (this.toastr = ref)}
+                    className="toast-top-right"
+                />
                 <header>
                     <ChatNav>
                         <div className="navbar-header">
@@ -146,10 +161,6 @@ class App extends Component {
                     </ChatNav>
                 </header>
                 <div className="container">
-                    <ToastContainer
-                        ref={ref => (this.toastr = ref)}
-                        className="toast-top-right"
-                    />
                     <div className="row">
                         <ChatContent messages={this.state.messages} />
                     </div>

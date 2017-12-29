@@ -33,6 +33,13 @@ function receive_joined(joined) {
     };
 }
 
+function saveCredentials() {
+    return (dispatch, getState) => {
+        localStorage.setItem("email", getState().email);
+        localStorage.setItem("username", getState().username);
+    };
+}
+
 export function receiveMessage(msg) {
     return (dispatch, getState) => {
         dispatch(addMessage(JSON.parse(msg)));
@@ -61,5 +68,6 @@ export function handleChangeUsername(username) {
 export function handleJoin(status) {
     return dispatch => {
         dispatch(receive_joined(status));
+        dispatch(saveCredentials());
     };
 }
