@@ -51,3 +51,6 @@ nav {
   .message .avatar {
     height: 50px;
     width: 50px; }
+
+.users {
+  padding: 5px; }
