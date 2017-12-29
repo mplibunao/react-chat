@@ -48,7 +48,7 @@ function messages(state = [], action) {
 function users(state = [], action) {
     switch (action.type) {
         case "ADD_USER": {
-            const { id, username, email };
+            const { id, username, email } = action;
             return [...state, { id, username, email }];
         }
         default:
@@ -61,7 +61,8 @@ const rootReducer = combineReducers({
     joined,
     new_message,
     messages,
-    username
+    username,
+    users
 });
 
 export default rootReducer;
