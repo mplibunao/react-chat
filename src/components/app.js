@@ -98,6 +98,7 @@ class App extends Component {
 
     join() {
         const { email, username } = this.state;
+        const type = "ADD_USER";
 
         if (!email && username) {
             this.toastr.error(
@@ -135,7 +136,13 @@ class App extends Component {
         }
 
         this.props.handleJoin(true);
-        this.ws.send();
+
+        const payload = JSON.stringify({
+            type,
+            email,
+            username
+        });
+        this.ws.send(payload);
     }
 
     updateEmail(e) {

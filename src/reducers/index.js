@@ -50,7 +50,6 @@ function users(state = [], action) {
         case "ADD_USER": {
             const { id, username, email } = action;
             const arr = [...state, { id, username, email }];
-            console.log("arr:: ", arr);
             return arr;
         }
         default:

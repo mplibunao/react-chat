@@ -4,7 +4,7 @@ import * as Actions from "../actions";
 
 const UserList = ({ users }) => {
     const userList = users.map(user => (
-        <div className="users">
+        <div className="users" key={user.id}>
             <span>{user.username}</span>
         </div>
     ));
