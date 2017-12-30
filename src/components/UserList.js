@@ -10,7 +10,7 @@ const UserList = ({ users }) => {
     ));
 
     return (
-        <div className="col-sm-2">
+        <div className="col-sm-2 user-list">
             <div className="input-container">{userList}</div>
         </div>
     );

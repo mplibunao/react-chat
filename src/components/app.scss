@@ -33,7 +33,7 @@ nav {
     overflow-y: scroll;
 }
 
-.footer{
+.footer {
     background: rgba(0, 0, 0, 0.3);
     color: #01193e;
     position: fixed;
@@ -56,11 +56,20 @@ nav {
 
 .message {
     margin-bottom: 3px;
+    padding: 0;
 
     .avatar {
         height: 50px;
         width: 50px;
     }
+}
+
+.message-list {
+    padding-right: 0;
+}
+
+.user-list {
+    padding-left: 0;
 }
 
 .users {

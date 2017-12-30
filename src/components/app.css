@@ -47,10 +47,17 @@ nav {
   margin-right: 5px; }
 
 .message {
-  margin-bottom: 3px; }
+  margin-bottom: 3px;
+  padding: 0; }
   .message .avatar {
     height: 50px;
     width: 50px; }
+
+.message-list {
+  padding-right: 0; }
+
+.user-list {
+  padding-left: 0; }
 
 .users {
   padding: 5px; }
