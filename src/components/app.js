@@ -11,6 +11,7 @@ import ChatContent from "./ChatContent";
 import Login from "./Login";
 import ChatInput from "./ChatInput";
 import ChatNav from "./ChatNav";
+import UserList from "./UserList";
 import "./app.css";
 
 class App extends Component {
@@ -36,7 +37,7 @@ class App extends Component {
             if (payload.type === "ADD_MESSAGE") {
                 this.props.receiveMessage(payload);
             } else if (payload.type === "ADD_USER") {
-                console.log("payload: ", payload);
+                this.props.addUser(payload);
             }
 
             const el = document.getElementById("chat-messages");
@@ -177,6 +178,7 @@ class App extends Component {
                 <div className="container">
                     <div className="row">
                         <ChatContent messages={this.state.messages} />
+                        <UserList />
                     </div>
                     {this.state.joined && (
                         <ChatInput

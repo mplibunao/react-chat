@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as Actions from "../actions";
 
 const UserList = ({ users }) => {
-    const usersList = users.map(user => (
+    const userList = users.map(user => (
         <div className="users">
             <span>{user.username}</span>
         </div>
@@ -11,7 +11,7 @@ const UserList = ({ users }) => {
 
     return (
         <div className="col-sm-2">
-            <div className="input-container">{usersList}</div>
+            <div className="input-container">{userList}</div>
         </div>
     );
 };
