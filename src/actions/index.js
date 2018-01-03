@@ -116,9 +116,15 @@ export function updateUser(payload) {
 }
 
 export function changeTo(to) {
-    return {
-        type: "CHANGE_TO",
-        to
+    return (dispatch, getState) => {
+        const { users } = getState();
+        const toUser = users.find(user => user.id === to);
+        const name = toUser ? toUser.username : "All";
+        const payload = {
+            name,
+            user: toUser ? toUser : {}
+        };
+        dispatch({ type: "CHANGE_TO", payload });
     };
 }
 

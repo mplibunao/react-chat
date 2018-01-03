@@ -11,20 +11,20 @@ function ChatInput({ sendMessage, updateMsg, value, to, users }) {
         }
     };
 
-    const setLabel = toId => {
-        return toId <= 0 ? "All" : findUser(toId);
-    };
+    // const setLabel = toId => {
+    //     return toId <= 0 ? "All" : findUser(toId);
+    // };
 
-    const findUser = toId => {
-        const userResult = users.find(user => user.id === toId);
-        console.log("toId: ", toId);
-        return userResult ? userResult.username : "All";
-    };
+    // const findUser = toId => {
+    //     const userResult = users.find(user => user.id === toId);
+    //     console.log("toId: ", toId);
+    //     return userResult ? userResult.username : "All";
+    // };
 
     return (
         <div>
             <div className="form-group">
-                <div className="label">To: {setLabel(to)}</div>
+                <div className="label">To: {to.name}</div>
                 <input
                     type="text"
                     className="form-control col-sm-12"

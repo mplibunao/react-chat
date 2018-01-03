@@ -70,10 +70,10 @@ function users(state = [], action) {
     }
 }
 
-function to(state = 0, action) {
+function to(state = { name: "All", user: {} }, action) {
     switch (action.type) {
         case "CHANGE_TO":
-            return action.to;
+            return action.payload;
         default:
             return state;
     }
