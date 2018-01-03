@@ -1,0 +1,11 @@
+[ignore]
+
+[include]
+/src/action/index.js
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
