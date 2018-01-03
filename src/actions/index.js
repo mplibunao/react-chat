@@ -34,12 +34,24 @@ function receive_joined(joined) {
 }
 
 function receive_user(payload) {
-    const { id, email, username } = payload;
+    const { id, email, username, time } = payload;
     return {
         type: "ADD_USER",
         id,
         email,
-        username
+        username,
+        time
+    };
+}
+
+function update_user(payload) {
+    const { id, email, username, time } = payload;
+    return {
+        type: "UPDATE_USER",
+        id,
+        email,
+        username,
+        time
     };
 }
 
@@ -84,5 +96,12 @@ export function handleJoin(status) {
 export function addUser(payload) {
     return dispatch => {
         dispatch(receive_user(payload));
+    };
+}
+
+export function updateUser(payload) {
+    console.log(0);
+    return dispatch => {
+        dispatch(update_user(payload));
     };
 }

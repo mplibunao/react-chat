@@ -16,6 +16,7 @@ const ChatContent = ({ messages }) => {
                     src={gravatarURL(message.email)}
                     alt={i}
                 />
+                <span> [{message.time}]</span>
                 <span> {message.username}: </span>
                 <span>{message.message}</span>
             </div>

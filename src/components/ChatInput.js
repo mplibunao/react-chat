@@ -9,13 +9,16 @@ function ChatInput({ sendMessage, updateMsg, value }) {
 
     return (
         <div>
-            <input
-                type="text"
-                className="form-control col-sm-12"
-                onKeyPress={e => _handleKeyPress(e)}
-                onChange={e => updateMsg(e)}
-                value={value}
-            />
+            <div className="form-group">
+                <div className="label">To: All</div>
+                <input
+                    type="text"
+                    className="form-control col-sm-12"
+                    onKeyPress={e => _handleKeyPress(e)}
+                    onChange={e => updateMsg(e)}
+                    value={value}
+                />
+            </div>
         </div>
     );
 }
