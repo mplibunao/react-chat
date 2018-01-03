@@ -70,13 +70,23 @@ function users(state = [], action) {
     }
 }
 
+function to(state = 0, action) {
+    switch (action.type) {
+        case "CHANGE_TO":
+            return action.to;
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers({
     email,
     joined,
     new_message,
     messages,
     username,
-    users
+    users,
+    to
 });
 
 export default rootReducer;

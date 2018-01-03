@@ -32,7 +32,6 @@ class App extends Component {
 
         this.ws.addEventListener("message", e => {
             const payload = JSON.parse(e.data);
-            console.log("0payload: ", payload);
             switch (payload.type) {
                 case "ADD_MESSAGE":
                     this.props.receiveMessage(payload);
@@ -45,6 +44,8 @@ class App extends Component {
                     break;
                 case "MESSAGE_TO_ALL":
                     this.props.receiveMessage(payload);
+                // case "DELETE_USER":
+                //     this.props.deleteUser(payload);
                 default:
                     break;
             }
@@ -91,7 +92,6 @@ class App extends Component {
             this.props.handleChangeEmail(email);
             this.props.handleChangeUsername(username);
             this.props.handleJoin(true);
-            console.log(1);
         }
     }
 

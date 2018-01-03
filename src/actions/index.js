@@ -62,6 +62,16 @@ function saveCredentials() {
     };
 }
 
+function delete_user(payload) {
+    return (dispatch, getState) => {
+        const { id, type } = payload;
+        const { users } = getState();
+        const newUsers = users.filter(user => {
+            return user.id !== id && user.type !== type;
+        });
+    };
+}
+
 export function receiveMessage(msg) {
     return (dispatch, getState) => {
         dispatch(addMessage(msg));
@@ -100,8 +110,20 @@ export function addUser(payload) {
 }
 
 export function updateUser(payload) {
-    console.log(0);
     return dispatch => {
         dispatch(update_user(payload));
+    };
+}
+
+export function changeTo(to) {
+    return {
+        type: "CHANGE_TO",
+        to
+    };
+}
+
+export function deleteUser(payload) {
+    return dispatch => {
+        dispatch(delete_user(payload));
     };
 }
