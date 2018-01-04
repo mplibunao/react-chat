@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Button, CloseButton } from "react-bootstrap";
 // import emojione from "emojione";
-import Materialize from "materialize-css";
 import { connect } from "react-redux";
-import { Navbar } from "react-bootstrap";
 import { ToastContainer } from "react-toastr";
+import moment from "moment";
 
 import * as Actions from "../actions";
 import ChatContent from "./ChatContent";
@@ -34,10 +32,22 @@ class App extends Component {
 
         this.ws.addEventListener("message", e => {
             const payload = JSON.parse(e.data);
-            if (payload.type === "ADD_MESSAGE") {
-                this.props.receiveMessage(payload);
-            } else if (payload.type === "ADD_USER") {
-                this.props.addUser(payload);
+            switch (payload.type) {
+                case "ADD_MESSAGE":
+                    this.props.receiveMessage(payload);
+                    break;
+                case "ADD_USER":
+                    this.props.addUser(payload);
+                    break;
+                case "UPDATE_USER":
+                    this.props.updateUser(payload);
+                    break;
+                case "MESSAGE_TO_ALL":
+                    this.props.receiveMessage(payload);
+                // case "DELETE_USER":
+                //     this.props.deleteUser(payload);
+                default:
+                    break;
             }
 
             const el = document.getElementById("chat-messages");
@@ -47,11 +57,12 @@ class App extends Component {
         this.ws.onopen = evt => {
             const { email, username } = this.state;
             if (email && username) {
-                const type = "ADD_USER";
+                const type = "UPDATE_USER";
                 const payload = JSON.stringify({
                     type,
                     email,
-                    username
+                    username,
+                    time: this.timestamp()
                 });
                 this.ws.send(payload);
             }
@@ -68,6 +79,10 @@ class App extends Component {
             username,
             joined
         });
+    }
+
+    timestamp() {
+        return moment().format("YYYY-MM-DD, hh:mm:ss");
     }
 
     getLocalStorageData() {
@@ -87,7 +102,9 @@ class App extends Component {
                 JSON.stringify({
                     email,
                     username,
-                    message: newMsg
+                    message: newMsg,
+                    type: "MESSAGE_TO_ALL",
+                    time: this.timestamp()
                 })
             );
 
@@ -98,7 +115,7 @@ class App extends Component {
 
     join() {
         const { email, username } = this.state;
-        const type = "ADD_USER";
+        const type = "UPDATE_USER";
 
         if (!email && username) {
             this.toastr.error(
@@ -140,7 +157,8 @@ class App extends Component {
         const payload = JSON.stringify({
             type,
             email,
-            username
+            username,
+            time: this.timestamp()
         });
         this.ws.send(payload);
     }

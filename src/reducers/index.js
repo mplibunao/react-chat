@@ -48,10 +48,32 @@ function messages(state = [], action) {
 function users(state = [], action) {
     switch (action.type) {
         case "ADD_USER": {
-            const { id, username, email } = action;
-            const arr = [...state, { id, username, email }];
+            const { id, username, email, time } = action;
+            const arr = [...state, { id, username, email, time }];
             return arr;
         }
+        case "UPDATE_USER": {
+            const { id, username, email, time } = action;
+            const a = state.reduce((users, user) => {
+                if (user.id === id) {
+                    user.username = username;
+                    user.email = email;
+                    user.time = time;
+                }
+                users.push(user);
+                return users;
+            }, []);
+            return a;
+        }
+        default:
+            return state;
+    }
+}
+
+function to(state = { name: "All", user: {} }, action) {
+    switch (action.type) {
+        case "CHANGE_TO":
+            return action.payload;
         default:
             return state;
     }
@@ -63,7 +85,8 @@ const rootReducer = combineReducers({
     new_message,
     messages,
     username,
-    users
+    users,
+    to
 });
 
 export default rootReducer;

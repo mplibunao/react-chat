@@ -1,13 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as Actions from "../actions";
+
 const md5 = require("md5");
 
-const ChatContent = ({ messages }) => {
+const ChatContent = ({ messages, to, users }) => {
     const gravatarURL = email => {
         const hash = md5(email).toString();
         return `http://www.gravatar.com/avatar/${hash}`;
     };
 
-    // emojione.toImage(message.message);
     const allMessages = messages.map((message, i) => {
         return (
             <div className="message" key={i}>
@@ -16,6 +18,7 @@ const ChatContent = ({ messages }) => {
                     src={gravatarURL(message.email)}
                     alt={i}
                 />
+                <span> [{message.time}]</span>
                 <span> {message.username}: </span>
                 <span>{message.message}</span>
             </div>
@@ -31,4 +34,8 @@ const ChatContent = ({ messages }) => {
     );
 };
 
-export default ChatContent;
+function mapStateToProps(state) {
+    return state;
+}
+
+export default connect(mapStateToProps, Actions)(ChatContent);

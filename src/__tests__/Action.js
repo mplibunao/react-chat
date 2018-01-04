@@ -8,26 +8,27 @@
 
 // describe('actions', () => {
     
-//     afterEach(() => {
-//         fetchMock.reset()
-//         fetchMock.restore()
-//     })
+//     // afterEach(() => {
+//     //     fetchMock.reset()
+//     //     fetchMock.restore()
+//     // })
 
 //     it('change email when handleChangeEmail is done', () => {
        
 //         const text = "abc@gmail.com"
-//         const fn = actions.handleChangeEmail(text)
-//         console.log('fn: ', fn);
+//         const store = mockStore({email: ""})
 
+//         const fn = store.dispatch(actions.handleChangeEmail(text))
+//         console.log('fn: ', fn);
+        
 //         // expect(fn).toBeA('function')
 //         // const dispatch = expect.createSpy();
 //         // const getState = () => ({ email: "abc@gmail.com" });
 //         // fn(dispatch, getState);
 //         // expect(dispatch).toHaveBeenCalledWith({ type: actions.RECV_EMAIL });
-//         const expectedAction = [
+//         const expectedAction = 
 //             { type: "RECV_EMAIL", email: text }
-//         ]
-//         const store = mockStore({email: ""})
+        
 //         // console.log("actions.receive_email(text)", store.dispatch(actions.handleChangeEmail(text)));
 //         expect(store.dispatch(actions.handleChangeEmail(text))).toEqual(expectedAction)
 //         // console.log(actions.handleChangeEmail(text));

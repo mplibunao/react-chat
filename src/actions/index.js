@@ -43,12 +43,24 @@ function receive_joined(joined) {
 }
 
 function receive_user(payload) {
-    const { id, email, username } = payload;
+    const { id, email, username, time } = payload;
     return {
         type: "ADD_USER",
         id,
         email,
-        username
+        username,
+        time
+    };
+}
+
+function update_user(payload) {
+    const { id, email, username, time } = payload;
+    return {
+        type: "UPDATE_USER",
+        id,
+        email,
+        username,
+        time
     };
 }
 
@@ -59,7 +71,17 @@ function saveCredentials() {
     };
 }
 
-export function receiveMessage(msg: String) {
+function delete_user(payload: Object) {
+    return (dispatch: Dispatch, getState: GetState) => {
+        const { id, type } = payload;
+        const { users } = getState();
+        const newUsers = users.filter(user => {
+            return user.id !== id && user.type !== type;
+        });
+    };
+}
+
+export function receiveMessage(msg: Object) {
     return (dispatch: Dispatch, getState: GetState) => {
         dispatch(addMessage(msg));
     };
@@ -93,5 +115,30 @@ export function handleJoin(status: String) {
 export function addUser(payload: Object) {
     return (dispatch: Dispatch) => {
         dispatch(receive_user(payload));
+    };
+}
+
+export function updateUser(payload: Object) {
+    return (dispatch: Dispatch) => {
+        dispatch(update_user(payload));
+    };
+}
+
+export function changeTo(to: String) {
+    return (dispatch: Dispatch, getState: GetState) => {
+        const { users } = getState();
+        const toUser = users.find(user => user.id === to);
+        const name = toUser ? toUser.username : "All";
+        const payload = {
+            name,
+            user: toUser ? toUser : {}
+        };
+        dispatch({ type: "CHANGE_TO", payload });
+    };
+}
+
+export function deleteUser(payload: Object) {
+    return (dispatch: Dispatch) => {
+        dispatch(delete_user(payload));
     };
 }
