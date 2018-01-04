@@ -13,6 +13,14 @@ describe("it should test redux", () => {
         );
     });
 
+    it ("should return the initial message", () => {
+        expect(
+            reducer({}, {}).new_message
+        ).toEqual(
+            ""
+        );
+    });
+
     it ("should return the email address", () => {
         expect(
             reducer({}, {
@@ -21,6 +29,14 @@ describe("it should test redux", () => {
             }).email
         ).toEqual(
             "abc@gmail.com"
+        );
+    });
+
+    it ("should return the initial email address", () => {
+        expect(
+            reducer({}, {}).email
+        ).toEqual(
+            ""
         );
     });
 
@@ -35,6 +51,14 @@ describe("it should test redux", () => {
         );
     });
 
+    it ("should return the initial value of username", () => {
+        expect(
+            reducer({}, {}).username
+        ).toEqual(
+            ""
+        );
+    });
+
     it ("should return the true", () => {
         expect(
             reducer({}, {
@@ -43,6 +67,14 @@ describe("it should test redux", () => {
             }).joined
         ).toEqual(
             true
+        );
+    });
+
+    it ("should return the false", () => {
+        expect(
+            reducer({}, {}).joined
+        ).toEqual(
+            false
         );
     });
 
@@ -57,6 +89,14 @@ describe("it should test redux", () => {
         );
     });
 
+    it ("should return the initial value of messages", () => {
+        expect(
+            reducer({}, {}).messages
+        ).toEqual(
+            []
+        );
+    });
+
     it ("should return the users", () => {
         expect(
             reducer({}, {
@@ -67,6 +107,14 @@ describe("it should test redux", () => {
             }).users
         ).toEqual(
             [{id: 1, username: "abc", email: "abc@gmail.com"}]
+        );
+    });
+
+    it ("should return the initial value of users", () => {
+        expect(
+            reducer({}, {}).users
+        ).toEqual(
+            []
         );
     });
 
