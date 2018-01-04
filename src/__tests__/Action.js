@@ -1,12 +1,43 @@
-import * as action from '../actions/index';
+// import configureMockStore from 'redux-mock-store';
+// import thunk from 'redux-thunk';
+// import * as actions from '../actions/index';
+// import fetchMock from 'fetch-mock'
 
-describe('it should test the action creator', () => {
+// const middlewares = [thunk]
+// const mockStore = configureMockStore(middlewares)
+
+// describe('actions', () => {
     
-    it('should test the handleChangeEmail method', () => {
-        expect.action.handleChangeEmail("abc@gmail.com").toEqual("abc@gmail.com")
-    });
+//     afterEach(() => {
+//         fetchMock.reset()
+//         fetchMock.restore()
+//     })
 
-    it('should test the handleChangeUsername method', () => {
-        expect.action.handleChangeUsername("abc").toEqual("abc")
-    })
-})
+//     it('change email when handleChangeEmail is done', () => {
+       
+//         const text = "abc@gmail.com"
+//         const fn = actions.handleChangeEmail(text)
+//         console.log('fn: ', fn);
+
+//         // expect(fn).toBeA('function')
+//         // const dispatch = expect.createSpy();
+//         // const getState = () => ({ email: "abc@gmail.com" });
+//         // fn(dispatch, getState);
+//         // expect(dispatch).toHaveBeenCalledWith({ type: actions.RECV_EMAIL });
+//         const expectedAction = [
+//             { type: "RECV_EMAIL", email: text }
+//         ]
+//         const store = mockStore({email: ""})
+//         // console.log("actions.receive_email(text)", store.dispatch(actions.handleChangeEmail(text)));
+//         expect(store.dispatch(actions.handleChangeEmail(text))).toEqual(expectedAction)
+//         // console.log(actions.handleChangeEmail(text));
+//         // console.log(store.getActions());
+//         // return store.dispatch(actions.handleChangeEmail(text)).then(() => {
+//         //     expect(store.getActions()).toEqual(expectedAction)   
+//         // })
+//     });
+
+//     // it('should test the handleChangeUsername method', () => {
+//     //     expect.action.handleChangeUsername("abc").toEqual("abc")
+//     // })
+// })
