@@ -2,10 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import * as Actions from "../actions";
 
-const UserList = ({ users }) => {
-    console.log("users: ", users);
+const UserList = ({ users, changeTo }) => {
     const userList = users.map((user, i) => (
-        <div className="users" key={i}>
+        <div className="users" key={i} onClick={() => changeTo(user.id)}>
             <span>{user.username}</span>
         </div>
     ));

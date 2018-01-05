@@ -124,7 +124,7 @@ export function updateUser(payload: Object) {
     };
 }
 
-export function changeTo(to: String) {
+export function changeTo(to: Number) {
     return (dispatch: Dispatch, getState: GetState) => {
         const { users } = getState();
         const toUser = users.find(user => user.id === to);

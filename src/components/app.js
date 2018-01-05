@@ -32,6 +32,7 @@ class App extends Component {
 
         this.ws.addEventListener("message", e => {
             const payload = JSON.parse(e.data);
+            console.log("payload: ", payload);
             switch (payload.type) {
                 case "ADD_MESSAGE":
                     this.props.receiveMessage(payload);
@@ -97,13 +98,35 @@ class App extends Component {
 
     send() {
         const { newMsg, email, username } = this.state;
+        const { to } = this.props;
+        let toId = 0;
+        let type;
+        if (to.name === "All") {
+            type = "MESSAGE_TO_ALL";
+        } else {
+            type = "ADD_MESSAGE";
+            toId = to.user.id;
+        }
+
+        const json = JSON.stringify({
+            to: toId,
+            email,
+            username,
+            message: newMsg,
+            type,
+            time: this.timestamp()
+        });
+
+        console.log("json: ", json);
+
         if (newMsg !== "") {
             this.ws.send(
                 JSON.stringify({
+                    to: toId,
                     email,
                     username,
                     message: newMsg,
-                    type: "MESSAGE_TO_ALL",
+                    type,
                     time: this.timestamp()
                 })
             );
