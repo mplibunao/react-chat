@@ -53,14 +53,11 @@ function receive_user(payload) {
     };
 }
 
-function update_user(payload) {
-    const { id, email, username, time } = payload;
+function delete_user(payload) {
+    const { id } = payload;
     return {
-        type: "UPDATE_USER",
-        id,
-        email,
-        username,
-        time
+        type: "DELETE_USER",
+        id
     };
 }
 
@@ -118,9 +115,9 @@ export function addUser(payload: Object) {
     };
 }
 
-export function updateUser(payload: Object) {
+export function deleteUser(payload: Object) {
     return (dispatch: Dispatch) => {
-        dispatch(update_user(payload));
+        dispatch(delete_user(payload));
     };
 }
 
@@ -134,11 +131,5 @@ export function changeTo(to: Number) {
             user: toUser ? toUser : {}
         };
         dispatch({ type: "CHANGE_TO", payload });
-    };
-}
-
-export function deleteUser(payload: Object) {
-    return (dispatch: Dispatch) => {
-        dispatch(delete_user(payload));
     };
 }

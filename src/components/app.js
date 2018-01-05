@@ -40,7 +40,7 @@ class App extends Component {
                 case "ADD_USER":
                     this.props.addUser(payload);
                     break;
-                case "UPDATE_USER":
+                case "DELETE_USER":
                     this.props.updateUser(payload);
                     break;
                 case "MESSAGE_TO_ALL":
@@ -138,7 +138,7 @@ class App extends Component {
 
     join() {
         const { email, username } = this.state;
-        const type = "UPDATE_USER";
+        const type = "ADD_USER";
 
         if (!email && username) {
             this.toastr.error(
