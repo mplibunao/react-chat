@@ -58,7 +58,7 @@ class App extends Component {
         this.ws.onopen = evt => {
             const { email, username } = this.state;
             if (email && username) {
-                const type = "UPDATE_USER";
+                const type = "ADD_USER";
                 const payload = JSON.stringify({
                     type,
                     email,

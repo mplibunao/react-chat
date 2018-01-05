@@ -45,7 +45,7 @@ function messages(state = [], action) {
     }
 }
 
-function users(state = [], action) {
+function users(state = [{ id: "All", username: "All" }], action) {
     switch (action.type) {
         case "ADD_USER": {
             const { id, username, email, time } = action;

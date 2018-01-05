@@ -12,16 +12,20 @@ const ChatContent = ({ messages, to, users }) => {
     };
 
     const filterMessages = () => {
-        return to.name === "All"
-            ? messages
-            : messages.filter(message => {
-                  return (
-                      (message.type === "ADD_MESSAGE" &&
-                          message.to === to.user.id) ||
-                      (message.type === "ADD_MESSAGE" &&
-                          message.id === to.user.id)
-                  );
-              });
+        if (to.name === "All") {
+            return messages.filter(message => {
+                return message.type === "MESSAGE_TO_ALL";
+            });
+        } else {
+            return messages.filter(message => {
+                return (
+                    (message.type === "ADD_MESSAGE" &&
+                        message.to === to.user.id) ||
+                    (message.type === "ADD_MESSAGE" &&
+                        message.id === to.user.id)
+                );
+            });
+        }
     };
 
     const mapMessages = messageArr =>
